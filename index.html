@@ -1,0 +1,535 @@
+<title>Movie Club</title>
+<meta name="description" content="Movie Club's Wednesday screening, staged like a 1970s repertory-cinema poster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #17130f;
+    --ink-2:      #1f1a14;
+    --paper:      #efe3c9;
+    --paper-dim:  #cdbf9e;
+    --ember:      #cf5a2a;
+    --ember-deep: #7a2f14;
+    --firefly:    #e6c96a;
+    --moss:       #333c2c;
+    --line:       rgba(239,227,201,0.16);
+
+    --font-display: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+    --font-caption: "Oswald", "Arial Narrow", sans-serif;
+    --font-body:    "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:var(--ink); }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+
+  h1,h2,h3{ text-wrap:balance; margin:0; }
+
+  /* ---------- grain overlay ---------- */
+  .grain{
+    position:fixed; inset:0; z-index:50; pointer-events:none;
+    opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- layout shell ---------- */
+  main{ position:relative; }
+
+  .wrap{
+    max-width:46rem;
+    margin:0 auto;
+    padding:0 1.75rem;
+  }
+
+  .kicker, .reel-label, .si-label, .spec dt, .credits-line small{
+    font-family:var(--font-caption);
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  .hero-bg{
+    position:absolute; inset:0; z-index:-1;
+    background:
+      radial-gradient(120% 60% at 50% 118%, var(--ember) 0%, var(--ember-deep) 34%, transparent 62%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 55%, #241c14 100%);
+  }
+
+  .hero-hills{
+    position:absolute; left:0; right:0; bottom:0; width:100%; height:34%;
+    fill:#0f0d0a;
+    z-index:1;
+  }
+
+  .fireflies{ position:absolute; inset:0; z-index:2; }
+  .firefly{
+    position:absolute;
+    width:4px; height:4px;
+    border-radius:50%;
+    background:var(--firefly);
+    box-shadow:0 0 6px 2px rgba(230,201,106,0.9), 0 0 16px 6px rgba(230,201,106,0.35);
+    animation:drift var(--dur,9s) ease-in-out infinite, glow 2.6s ease-in-out infinite;
+    animation-delay:var(--delay,0s);
+  }
+
+  @keyframes drift{
+    0%,100%{ transform:translate(0,0); }
+    50%{ transform:translate(var(--dx,10px), calc(var(--dy,-22px))); }
+  }
+  @keyframes glow{
+    0%,100%{ opacity:0.25; }
+    50%{ opacity:1; }
+  }
+
+  .hero-content{
+    position:relative; z-index:3;
+    padding:7rem 1.75rem 3.5rem;
+    text-align:center;
+  }
+
+  .kicker{
+    font-size:0.72rem;
+    color:var(--firefly);
+    margin:0 0 1.6rem;
+  }
+
+  .jp-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.6rem, 9vw, 4.6rem);
+    line-height:1.05;
+    color:var(--paper);
+    margin-bottom:0.55rem;
+  }
+
+  .en-title{
+    font-family:var(--font-caption);
+    font-weight:600;
+    font-size:clamp(1.15rem, 3.4vw, 1.7rem);
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--paper);
+    margin:0 0 1.1rem;
+  }
+  .en-title.solo{ font-size:clamp(1.8rem, 6vw, 3rem); margin-top:0.4rem; }
+
+  .hero-sub{
+    font-family:var(--font-body);
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:1rem;
+    margin:0;
+  }
+
+  .scroll-cue{
+    margin-top:3.25rem;
+    font-family:var(--font-caption);
+    font-size:0.68rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    display:flex; flex-direction:column; align-items:center; gap:0.5rem;
+  }
+  .scroll-cue .stem{
+    width:1px; height:30px; background:var(--paper-dim);
+    animation:stretch 2.4s ease-in-out infinite;
+    transform-origin:top;
+  }
+  @keyframes stretch{
+    0%,100%{ transform:scaleY(0.55); opacity:0.5; }
+    50%{ transform:scaleY(1); opacity:1; }
+  }
+
+  /* ---------- reels ---------- */
+  .reel{
+    padding:4.5rem 0;
+    border-top:1px solid var(--line);
+  }
+
+  .reel-label{
+    font-size:0.72rem;
+    color:var(--ember);
+    margin:0 0 2.25rem;
+  }
+
+  /* screening details */
+  .screening-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(9.5rem, 1fr));
+    gap:1.75rem 1.5rem;
+  }
+  .screening-item{
+    display:flex; flex-direction:column; gap:0.35rem;
+  }
+  .si-label{ font-size:0.66rem; color:var(--paper-dim); }
+  .si-value{
+    font-family:var(--font-body);
+    font-size:1.35rem;
+    font-weight:600;
+  }
+  .si-value.accent{ color:var(--ember); }
+
+  .note{
+    margin-top:2.5rem;
+    padding-top:1.5rem;
+    border-top:1px dashed var(--line);
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:0.98rem;
+  }
+
+  /* the film / synopsis */
+  .story-grid{
+    display:grid;
+    grid-template-columns:11rem 1fr;
+    gap:2.5rem;
+    align-items:start;
+  }
+
+  .specs{ margin:0; }
+  .spec{ margin:0 0 1.15rem; }
+  .spec dt{ font-size:0.62rem; color:var(--paper-dim); margin-bottom:0.2rem; }
+  .spec dd{ margin:0; font-size:0.95rem; }
+
+  .synopsis{
+    font-size:1.09rem;
+    line-height:1.72;
+    max-width:38rem;
+  }
+  .synopsis .drop{
+    font-family:var(--font-display);
+    font-size:2.6rem;
+    line-height:0.7;
+    float:left;
+    padding:0.12em 0.1em 0 0;
+    color:var(--ember);
+  }
+
+  /* coming attractions / archive lists */
+  .bill{ margin:0; }
+  .bill-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1.25rem;
+    padding:0.9rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .bill-row:last-child{ border-bottom:none; }
+  .bill-date{
+    font-family:var(--font-caption);
+    letter-spacing:0.08em;
+    font-size:0.82rem;
+    color:var(--ember);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .bill-title{ font-size:1.02rem; }
+  .bill-row.past .bill-date,
+  .bill-row.past .bill-title{ color:var(--paper-dim); }
+
+  .empty-note{
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:0.98rem;
+  }
+
+  /* ---------- footer credits ---------- */
+  .credits{
+    padding:4rem 0 5rem;
+    border-top:1px solid var(--line);
+    text-align:center;
+    color:var(--paper-dim);
+  }
+  .credits-line{
+    font-family:var(--font-caption);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.78rem;
+    margin:0.4rem 0;
+  }
+  .credits-line.main{
+    color:var(--paper);
+    font-size:0.92rem;
+    margin-top:1.4rem;
+  }
+  .credits-jp{
+    font-family:var(--font-display);
+    font-size:1.05rem;
+    color:var(--firefly);
+    margin:1.6rem 0 0.3rem;
+  }
+  .credits-en{
+    font-family:var(--font-caption);
+    letter-spacing:0.2em;
+    font-size:0.82rem;
+    text-transform:uppercase;
+    color:var(--paper);
+  }
+
+  [hidden]{ display:none !important; }
+
+  @media (max-width:640px){
+    .story-grid{ grid-template-columns:1fr; }
+    .specs{ display:grid; grid-template-columns:1fr 1fr; gap:0 1.5rem; }
+    .bill-row{ flex-direction:column; gap:0.2rem; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .firefly, .scroll-cue .stem{ animation:none !important; opacity:0.7; }
+  }
+</style>
+
+<div class="grain"></div>
+
+<main>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <svg class="hero-hills" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,24 L0,14 Q12,8 22,13 T45,10 Q58,6 68,12 T90,9 L100,13 L100,24 Z"></path>
+    </svg>
+    <div class="fireflies" id="fireflies" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <p class="kicker">Movie Club &mdash; Next Screening</p>
+      <h1 class="jp-title" id="hero-jp"></h1>
+      <p class="en-title" id="hero-en"></p>
+      <p class="hero-sub" id="hero-sub"></p>
+      <div class="scroll-cue"><span class="stem"></span>Reel One</div>
+    </div>
+  </section>
+
+  <section class="reel reel--screening wrap">
+    <p class="reel-label" data-reel>The Screening</p>
+    <div class="screening-grid">
+      <div class="screening-item">
+        <span class="si-label">Date</span>
+        <span class="si-value accent" id="si-date"></span>
+      </div>
+      <div class="screening-item" id="si-doors-wrap">
+        <span class="si-label">Doors</span>
+        <span class="si-value" id="si-doors"></span>
+      </div>
+      <div class="screening-item" id="si-start-wrap">
+        <span class="si-label">Film Starts</span>
+        <span class="si-value" id="si-start"></span>
+      </div>
+      <div class="screening-item">
+        <span class="si-label">Where</span>
+        <span class="si-value" id="si-location"></span>
+      </div>
+    </div>
+    <p class="note" id="si-note" hidden></p>
+  </section>
+
+  <section class="reel reel--story wrap">
+    <p class="reel-label" data-reel>The Film</p>
+    <div class="story-grid">
+      <dl class="specs" id="specs"></dl>
+      <p class="synopsis" id="synopsis"></p>
+    </div>
+  </section>
+
+  <section class="reel reel--upcoming wrap" id="upcoming-reel" hidden>
+    <p class="reel-label" data-reel>Coming Attractions</p>
+    <div class="bill" id="upcoming-bill"></div>
+  </section>
+
+  <section class="reel reel--past wrap" id="past-reel" hidden>
+    <p class="reel-label" data-reel>Past Screenings</p>
+    <div class="bill" id="past-bill"></div>
+  </section>
+
+  <footer class="credits wrap">
+    <p class="credits-line" id="credits-presents"></p>
+    <p class="credits-line main" id="credits-by"></p>
+    <p class="credits-jp" id="credits-jp" hidden></p>
+    <p class="credits-en" id="credits-en"></p>
+    <p class="credits-line" style="margin-top:1.8rem;">Screening as part of Movie Club</p>
+  </footer>
+</main>
+
+<script src="movies.js"></script>
+<script>
+  (function(){
+    var REEL_WORDS = ["One","Two","Three","Four","Five","Six"];
+    var data = (window.MOVIE_CLUB && window.MOVIE_CLUB.screenings) || [];
+    var todayISO = new Date().toISOString().slice(0, 10);
+
+    var sorted = data.slice().sort(function(a, b){
+      return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+    });
+    var upcoming = sorted.filter(function(s){ return s.date >= todayISO; });
+    var past = sorted.filter(function(s){ return s.date < todayISO; }).reverse();
+
+    var featured = null;
+    if (window.MOVIE_CLUB && window.MOVIE_CLUB.featuredId) {
+      featured = sorted.filter(function(s){ return s.id === window.MOVIE_CLUB.featuredId; })[0] || null;
+    }
+    if (!featured) featured = upcoming[0] || sorted[sorted.length - 1] || null;
+
+    var upcomingOthers = upcoming.filter(function(s){ return !featured || s.id !== featured.id; });
+
+    function fmt(iso, opts){
+      var d = new Date(iso + "T00:00:00Z");
+      return new Intl.DateTimeFormat("en-US", Object.assign({ timeZone: "UTC" }, opts)).format(d);
+    }
+    function fmtFull(iso){ return fmt(iso, { weekday: "short", month: "short", day: "numeric" }); }
+    function fmtShort(iso){ return fmt(iso, { month: "short", day: "numeric" }); }
+
+    function addSpec(dl, label, value){
+      if (!value) return;
+      var div = document.createElement("div");
+      div.className = "spec";
+      var dt = document.createElement("dt"); dt.textContent = label;
+      var dd = document.createElement("dd"); dd.textContent = value;
+      div.appendChild(dt); div.appendChild(dd);
+      dl.appendChild(div);
+    }
+
+    function buildBill(container, list, kind){
+      list.forEach(function(s){
+        var row = document.createElement("div");
+        row.className = "bill-row" + (kind === "past" ? " past" : "");
+        var date = document.createElement("span");
+        date.className = "bill-date";
+        date.textContent = fmtShort(s.date);
+        var title = document.createElement("span");
+        title.className = "bill-title";
+        title.textContent = s.titleEn + (s.titleJp ? " · " + s.titleJp : "");
+        row.appendChild(date);
+        row.appendChild(title);
+        container.appendChild(row);
+      });
+    }
+
+    if (featured) {
+      var jpEl = document.getElementById("hero-jp");
+      var enEl = document.getElementById("hero-en");
+      if (featured.titleJp) {
+        jpEl.textContent = featured.titleJp;
+      } else {
+        jpEl.hidden = true;
+        enEl.classList.add("solo");
+      }
+      enEl.textContent = featured.titleEn;
+
+      var subParts = [featured.director, featured.year, featured.studio].filter(Boolean);
+      document.getElementById("hero-sub").textContent =
+        (featured.director ? featured.director + ", " : "") +
+        (featured.year || "") +
+        (featured.studio ? " · " + featured.studio : "");
+
+      document.getElementById("si-date").textContent = fmtFull(featured.date);
+      document.getElementById("si-location").textContent = featured.location || "Location TBD";
+
+      if (featured.doors) document.getElementById("si-doors").textContent = featured.doors;
+      else document.getElementById("si-doors-wrap").hidden = true;
+
+      if (featured.start) document.getElementById("si-start").textContent = featured.start;
+      else document.getElementById("si-start-wrap").hidden = true;
+
+      var noteEl = document.getElementById("si-note");
+      if (featured.note) { noteEl.textContent = featured.note; noteEl.hidden = false; }
+
+      var dl = document.getElementById("specs");
+      addSpec(dl, "Director", featured.director);
+      addSpec(dl, "Studio", featured.studio);
+      addSpec(dl, "Year", featured.year);
+      addSpec(dl, "Runtime", featured.runtime);
+      addSpec(dl, "Language", featured.language);
+      addSpec(dl, "Based On", featured.basedOn);
+
+      var synEl = document.getElementById("synopsis");
+      if (featured.synopsis) {
+        var text = featured.synopsis;
+        var drop = document.createElement("span");
+        drop.className = "drop";
+        drop.textContent = text.charAt(0);
+        synEl.appendChild(drop);
+        synEl.appendChild(document.createTextNode(text.slice(1)));
+      }
+
+      document.getElementById("credits-presents").textContent =
+        (featured.studio || "Movie Club") + " presents";
+      document.getElementById("credits-by").textContent =
+        (featured.director ? "A Film by " + featured.director : featured.titleEn) +
+        (featured.basedOn ? " · Based on " + featured.basedOn : "");
+      if (featured.titleJp) {
+        var cjp = document.getElementById("credits-jp");
+        cjp.textContent = featured.titleJp;
+        cjp.hidden = false;
+      }
+      document.getElementById("credits-en").textContent = featured.titleEn;
+    } else {
+      document.getElementById("hero-en").textContent = "No screenings yet";
+      document.getElementById("hero-sub").textContent = "Add one in movies.js to get started.";
+      document.querySelector(".reel--screening").hidden = true;
+      document.querySelector(".reel--story").hidden = true;
+    }
+
+    if (upcomingOthers.length) {
+      buildBill(document.getElementById("upcoming-bill"), upcomingOthers, "upcoming");
+      document.getElementById("upcoming-reel").hidden = false;
+    }
+    if (past.length) {
+      buildBill(document.getElementById("past-bill"), past, "past");
+      document.getElementById("past-reel").hidden = false;
+    }
+
+    var visibleReels = Array.prototype.filter.call(
+      document.querySelectorAll(".reel"),
+      function(r){ return !r.hidden; }
+    );
+    visibleReels.forEach(function(reel, i){
+      var label = reel.querySelector("[data-reel]");
+      if (label) label.textContent = "Reel " + (REEL_WORDS[i] || (i + 1)) + " — " + label.textContent.replace(/^Reel \w+ — /, "");
+    });
+  })();
+
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var host = document.getElementById("fireflies");
+    if (!host || reduce) return;
+    var COUNT = 18;
+    for (var i = 0; i < COUNT; i++){
+      var f = document.createElement("span");
+      f.className = "firefly";
+      var x = Math.random() * 100;
+      var y = 40 + Math.random() * 58;
+      var dx = (Math.random() * 24 - 12).toFixed(0) + "px";
+      var dy = (-16 - Math.random() * 26).toFixed(0) + "px";
+      var dur = (6 + Math.random() * 6).toFixed(1) + "s";
+      var delay = (Math.random() * 6).toFixed(1) + "s";
+      f.style.left = x + "%";
+      f.style.top = y + "%";
+      f.style.setProperty("--dx", dx);
+      f.style.setProperty("--dy", dy);
+      f.style.setProperty("--dur", dur);
+      f.style.setProperty("--delay", delay);
+      host.appendChild(f);
+    }
+  })();
+</script>
