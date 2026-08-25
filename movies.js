@@ -32,6 +32,42 @@ window.MOVIE_CLUB = {
 
   screenings: [
     {
+      id: "wages-of-fear",
+      titleEn: "The Wages of Fear",
+      director: "Henri-Georges Clouzot",
+      studio: "Compagnie Industrielle et Commerciale Cinématographique",
+      year: 1953,
+      runtime: "154 min",
+      language: "French",
+      basedOn: "",
+      synopsis: "In a run-down South American town, four men are paid to drive trucks loaded with nitroglycerin into the jungle through to the oil field. Friendships are tested and rivalries develop as they embark upon the perilous journey.",
+      date: "2026-08-26",
+      doors: "6:00 PM",
+      start: "6:30 PM",
+      location: "You know where it is",
+      note: "The Wages of Fear is an unrelenting, white-knuckle masterclass in cinematic tension.",
+    },
+
+    {
+      id: "my-next-pick",
+      titleEn: "TBD",
+      director: "",
+      studio: "",
+      year: 2000,
+      runtime: "",
+      language: "",
+      basedOn: "",
+      synopsis: "",
+      date: "2026-09-02",
+      doors: "",
+      start: "",
+      location: "",
+      note: "",
+    },
+
+    // Archive entries below — dates are placeholders until the real
+    // screening dates are filled in.
+    {
       id: "grave-of-the-fireflies",
       titleJp: "火垂るの墓",
       titleEn: "Grave of the Fireflies",
@@ -43,11 +79,46 @@ window.MOVIE_CLUB = {
       basedOn: "The novel by Akiyuki Nosaka",
       synopsis:
         "Kobe, 1945. In the last months of a war they had no hand in starting, fourteen-year-old Seita and his four-year-old sister Setsuko lose their mother, their home, and every adult willing to keep them. What Isao Takahata built from there gets filed under animation, and just as often misfiled as something for children. It has no villain — only two kids, a tin of fruit drops, and a countryside lit at night by fireflies and the glow of a burning city.",
-      date: "2026-08-26",
+      date: "2026-08-24",
       doors: "7:30 PM",
       start: "8:00 PM",
       location: "Location TBD",
       note: "Ninety minutes, subtitled, and among the saddest films ever made — bring something to wipe your eyes with. Snacks welcome; this one earns them.",
+    },
+    {
+      id: "mishima",
+      titleJp: "三島由紀夫",
+      titleEn: "Mishima: A Life in Four Chapters",
+      director: "Paul Schrader",
+      studio: "Zoetrope Studios / Filmlink International",
+      year: 1985,
+      runtime: "121 min",
+      language: "Japanese, subtitled",
+      basedOn: "The life and novels of Yukio Mishima",
+      synopsis:
+        "The last day of Yukio Mishima's life, cut against dramatized chapters from his fiction and scenes from his rise as Japan's most famous postwar novelist. Paul Schrader stages the novels in Eiko Ishioka's stylized, theatrical sets, in color, while the biographical scenes run in black and white — building toward the 1970 morning Mishima and four followers took a general hostage and staged a coup that was never going to succeed.",
+      date: "2026-08-19", // PLACEHOLDER — set the actual screening date
+      doors: "",
+      start: "",
+      location: "Location TBD",
+      note: "Exact screening date to be confirmed — update in movies.js.",
+    },
+    {
+      id: "la-haine",
+      titleEn: "La Haine",
+      director: "Mathieu Kassovitz",
+      studio: "Les Productions Lazennec",
+      year: 1995,
+      runtime: "98 min",
+      language: "French, subtitled",
+      basedOn: "",
+      synopsis:
+        "Twenty hours in the lives of three friends in a Paris banlieue, in the aftermath of a riot that left a friend of theirs in a coma after a beating by police. Shot in black and white, scored to hip-hop and Édith Piaf alike, and built around a joke about a man falling from a fifty-story building — so far, so good — that the film keeps repeating until it explains exactly what it means.",
+      date: "2026-08-19", // PLACEHOLDER — set the actual screening date
+      doors: "",
+      start: "",
+      location: "Location TBD",
+      note: "Exact screening date to be confirmed — update in movies.js.",
     },
 
     // Add the next screening here, e.g.:

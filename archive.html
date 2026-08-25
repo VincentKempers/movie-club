@@ -1,0 +1,283 @@
+<meta charset="UTF-8">
+<title>Archive — Movie Club</title>
+<meta name="description" content="Movie Club's archive of past screenings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:        #17130f;
+    --ink-2:      #1f1a14;
+    --paper:      #efe3c9;
+    --paper-dim:  #cdbf9e;
+    --ember:      #cf5a2a;
+    --ember-deep: #7a2f14;
+    --firefly:    #e6c96a;
+    --moss:       #333c2c;
+    --line:       rgba(239,227,201,0.16);
+
+    --font-display: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+    --font-caption: "Oswald", "Arial Narrow", sans-serif;
+    --font-body:    "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ background:var(--ink); }
+
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  a{ color:inherit; }
+  h1,h2,h3{ text-wrap:balance; margin:0; }
+
+  .grain{
+    position:fixed; inset:0; z-index:50; pointer-events:none;
+    opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  main{ position:relative; }
+
+  .wrap{
+    max-width:46rem;
+    margin:0 auto;
+    padding:0 1.75rem;
+  }
+
+  .kicker, .reel-label, .archive-meta, .archive-date{
+    font-family:var(--font-caption);
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+  }
+
+  /* ---------- header ---------- */
+  .archive-header{
+    padding:6rem 0 3rem;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(120% 60% at 50% -10%, rgba(207,90,42,0.28) 0%, transparent 62%),
+      linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+  }
+
+  .back-link{
+    display:inline-block;
+    font-family:var(--font-caption);
+    font-size:0.72rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    text-decoration:none;
+    margin-bottom:2rem;
+    transition:color 0.15s ease;
+  }
+  .back-link:hover{ color:var(--firefly); }
+
+  .kicker{
+    font-size:0.72rem;
+    color:var(--firefly);
+    margin:0 0 1.1rem;
+  }
+
+  .archive-title{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(2.2rem, 7vw, 3.4rem);
+    line-height:1.1;
+    color:var(--paper);
+    margin-bottom:0.6rem;
+  }
+
+  .archive-sub{
+    font-family:var(--font-body);
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:1rem;
+    margin:0;
+    max-width:34rem;
+  }
+
+  /* ---------- list ---------- */
+  .archive-list{
+    padding:3.5rem 0 5rem;
+  }
+
+  .archive-card{
+    padding:2.5rem 0;
+    border-bottom:1px solid var(--line);
+  }
+  .archive-card:first-child{ padding-top:0; }
+  .archive-card:last-child{ border-bottom:none; }
+
+  .archive-date{
+    font-size:0.7rem;
+    color:var(--ember);
+    font-variant-numeric:tabular-nums;
+    margin:0 0 0.9rem;
+  }
+
+  .archive-jp{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(1.4rem, 4vw, 1.9rem);
+    color:var(--paper);
+    margin-bottom:0.3rem;
+  }
+
+  .archive-en{
+    font-family:var(--font-caption);
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--paper);
+    margin:0 0 0.7rem;
+  }
+  .archive-en.solo{ font-size:1.3rem; }
+
+  .archive-meta{
+    font-size:0.68rem;
+    color:var(--paper-dim);
+    margin:0 0 1.1rem;
+  }
+  .archive-meta span:not(:last-child)::after{ content:"  ·  "; }
+
+  .archive-synopsis{
+    font-size:1rem;
+    line-height:1.68;
+    color:var(--paper);
+    max-width:38rem;
+    margin:0;
+  }
+
+  .archive-note{
+    margin-top:1.1rem;
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:0.9rem;
+  }
+
+  .empty-note{
+    font-style:italic;
+    color:var(--paper-dim);
+    font-size:0.98rem;
+    padding:3.5rem 0 5rem;
+  }
+
+  .credits{
+    padding:3rem 0 5rem;
+    border-top:1px solid var(--line);
+    text-align:center;
+    color:var(--paper-dim);
+  }
+  .credits-line{
+    font-family:var(--font-caption);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.78rem;
+    margin:0.4rem 0;
+  }
+  .credits-line a{ color:var(--paper); text-decoration:none; }
+  .credits-line a:hover{ color:var(--firefly); }
+
+  [hidden]{ display:none !important; }
+</style>
+
+<div class="grain"></div>
+
+<main>
+  <section class="archive-header wrap">
+    <a class="back-link" href="index.html">&larr; Movie Club</a>
+    <p class="kicker">Movie Club &mdash; Archive</p>
+    <h1 class="archive-title">Past Screenings</h1>
+    <p class="archive-sub">Everything Movie Club has screened so far, in reverse chronological order.</p>
+  </section>
+
+  <section class="archive-list wrap" id="archive-list"></section>
+  <p class="empty-note wrap" id="archive-empty" hidden>Nothing's screened yet — check back after the first showing.</p>
+
+  <footer class="credits wrap">
+    <p class="credits-line"><a href="index.html">&larr; Back to Movie Club</a></p>
+  </footer>
+</main>
+
+<script src="movies.js"></script>
+<script>
+  (function(){
+    var data = (window.MOVIE_CLUB && window.MOVIE_CLUB.screenings) || [];
+    var todayISO = new Date().toISOString().slice(0, 10);
+
+    var past = data
+      .filter(function(s){ return s.date < todayISO; })
+      .sort(function(a, b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+
+    function fmt(iso, opts){
+      var d = new Date(iso + "T00:00:00Z");
+      return new Intl.DateTimeFormat("en-US", Object.assign({ timeZone: "UTC" }, opts)).format(d);
+    }
+    function fmtFull(iso){ return fmt(iso, { weekday: "long", year: "numeric", month: "long", day: "numeric" }); }
+
+    var list = document.getElementById("archive-list");
+
+    if (!past.length) {
+      document.getElementById("archive-empty").hidden = false;
+      return;
+    }
+
+    past.forEach(function(s){
+      var card = document.createElement("article");
+      card.className = "archive-card";
+
+      var date = document.createElement("p");
+      date.className = "archive-date";
+      date.textContent = fmtFull(s.date);
+      card.appendChild(date);
+
+      if (s.titleJp) {
+        var jp = document.createElement("p");
+        jp.className = "archive-jp";
+        jp.textContent = s.titleJp;
+        card.appendChild(jp);
+      }
+
+      var en = document.createElement("p");
+      en.className = "archive-en" + (s.titleJp ? "" : " solo");
+      en.textContent = s.titleEn || "Untitled";
+      card.appendChild(en);
+
+      var metaParts = [s.director, s.year, s.studio, s.runtime].filter(Boolean);
+      if (metaParts.length) {
+        var meta = document.createElement("p");
+        meta.className = "archive-meta";
+        metaParts.forEach(function(part){
+          var span = document.createElement("span");
+          span.textContent = part;
+          meta.appendChild(span);
+        });
+        card.appendChild(meta);
+      }
+
+      if (s.synopsis) {
+        var syn = document.createElement("p");
+        syn.className = "archive-synopsis";
+        syn.textContent = s.synopsis;
+        card.appendChild(syn);
+      }
+
+      if (s.note) {
+        var note = document.createElement("p");
+        note.className = "archive-note";
+        note.textContent = s.note;
+        card.appendChild(note);
+      }
+
+      list.appendChild(card);
+    });
+  })();
+</script>

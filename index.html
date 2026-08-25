@@ -1,3 +1,4 @@
+<meta charset="UTF-8">
 <title>Movie Club</title>
 <meta name="description" content="Movie Club's Wednesday screening, staged like a 1970s repertory-cinema poster.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -256,6 +257,19 @@
     font-size:0.98rem;
   }
 
+  .archive-link{
+    margin-top:1.5rem;
+    font-family:var(--font-caption);
+    font-size:0.78rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+  }
+  .archive-link a{
+    color:var(--ember);
+    text-decoration:none;
+  }
+  .archive-link a:hover{ color:var(--firefly); }
+
   /* ---------- footer credits ---------- */
   .credits{
     padding:4rem 0 5rem;
@@ -275,6 +289,8 @@
     font-size:0.92rem;
     margin-top:1.4rem;
   }
+  .credits-line a{ text-decoration:none; }
+  .credits-line a:hover{ color:var(--firefly); }
   .credits-jp{
     font-family:var(--font-display);
     font-size:1.05rem;
@@ -360,6 +376,7 @@
   <section class="reel reel--past wrap" id="past-reel" hidden>
     <p class="reel-label" data-reel>Past Screenings</p>
     <div class="bill" id="past-bill"></div>
+    <p class="archive-link"><a href="archive.html">View full archive &rarr;</a></p>
   </section>
 
   <footer class="credits wrap">
@@ -368,6 +385,7 @@
     <p class="credits-jp" id="credits-jp" hidden></p>
     <p class="credits-en" id="credits-en"></p>
     <p class="credits-line" style="margin-top:1.8rem;">Screening as part of Movie Club</p>
+    <p class="credits-line"><a href="archive.html">Archive</a></p>
   </footer>
 </main>
 
