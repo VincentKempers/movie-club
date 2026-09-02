@@ -32,6 +32,22 @@ window.MOVIE_CLUB = {
 
   screenings: [
     {
+      id: "the-fall-2006",
+      titleEn: "The Fall",
+      director: "Tarsem Singh",
+      studio: "Googly Films",
+      year: 2006,
+      runtime: "117 min",
+      language: "English",
+      basedOn: "Yo Ho Ho by Valeri Petrov",
+      synopsis: "et in a 1915 Los Angeles hospital, The Fall follows Roy, a paralyzed and suicidal stuntman who weaves an epic fantasy adventure to manipulate a young Romanian patient named Alexandria into stealing morphine for him. As Alexandria visualizes the tale—populating it with heroes who mirror people around the hospital—Roy begins killing off the characters out of despair. When Alexandria fights to save the story, her resilience forces Roy to abandon his self-pity, rewrite the narrative with a hopeful ending, and find a renewed will to live.",
+      date: "2026-09-09",
+      doors: "7:00 PM",
+      start: "7:30 PM",
+      location: "You know where it is",
+      note: "Stunning movie",
+    },
+    {
       id: "wages-of-fear",
       titleEn: "The Wages of Fear",
       director: "Henri-Georges Clouzot",
@@ -41,7 +57,7 @@ window.MOVIE_CLUB = {
       language: "French",
       basedOn: "",
       synopsis: "In a run-down South American town, four men are paid to drive trucks loaded with nitroglycerin into the jungle through to the oil field. Friendships are tested and rivalries develop as they embark upon the perilous journey.",
-      date: "2026-08-26",
+      date: "2026-09-02",
       doors: "6:00 PM",
       start: "6:30 PM",
       location: "You know where it is",
