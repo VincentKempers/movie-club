@@ -50,7 +50,7 @@ window.MOVIE_CLUB = {
     {
       id: "perfect-blue-2026",
       titleJp: "パーフェクトブルー",
-      titleEn: "perfect-blue",
+      titleEn: "Perfect Blue",
       director: "Satoshi Kon",
       studio: "Satoshi Kon",
       year: 1997,
