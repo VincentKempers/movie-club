@@ -47,6 +47,25 @@ window.MOVIE_CLUB = {
       location: "You know where it is",
       note: "Stunning movie",
     },
+    // {
+    //   id: "my-next-pick",
+    //   titleEn: "TBD",
+    //   director: "",
+    //   studio: "",
+    //   year: 2000,
+    //   runtime: "",
+    //   language: "",
+    //   basedOn: "",
+    //   synopsis: "",
+    //   date: "2026-09-02",
+    //   doors: "",
+    //   start: "",
+    //   location: "",
+    //   note: "",
+    // },
+
+    // Archive entries below — dates are placeholders until the real
+    // screening dates are filled in.
     {
       id: "perfect-blue-2026",
       titleJp: "パーフェクトブルー",
@@ -80,26 +99,6 @@ window.MOVIE_CLUB = {
       location: "You know where it is",
       note: "The Wages of Fear is an unrelenting, white-knuckle masterclass in cinematic tension.",
     },
-
-    // {
-    //   id: "my-next-pick",
-    //   titleEn: "TBD",
-    //   director: "",
-    //   studio: "",
-    //   year: 2000,
-    //   runtime: "",
-    //   language: "",
-    //   basedOn: "",
-    //   synopsis: "",
-    //   date: "2026-09-02",
-    //   doors: "",
-    //   start: "",
-    //   location: "",
-    //   note: "",
-    // },
-
-    // Archive entries below — dates are placeholders until the real
-    // screening dates are filled in.
     {
       id: "grave-of-the-fireflies",
       titleJp: "火垂るの墓",
