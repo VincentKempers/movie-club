@@ -41,7 +41,7 @@ window.MOVIE_CLUB = {
       language: "English",
       basedOn: "Yo Ho Ho by Valeri Petrov",
       synopsis: "et in a 1915 Los Angeles hospital, The Fall follows Roy, a paralyzed and suicidal stuntman who weaves an epic fantasy adventure to manipulate a young Romanian patient named Alexandria into stealing morphine for him. As Alexandria visualizes the tale—populating it with heroes who mirror people around the hospital—Roy begins killing off the characters out of despair. When Alexandria fights to save the story, her resilience forces Roy to abandon his self-pity, rewrite the narrative with a hopeful ending, and find a renewed will to live.",
-      date: "2026-09-09",
+      date: "2026-09-16",
       doors: "7:00 PM",
       start: "7:30 PM",
       location: "You know where it is",
