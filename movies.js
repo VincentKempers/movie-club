@@ -94,7 +94,7 @@ window.MOVIE_CLUB = {
       start: "7:30 PM",
       location: "You know where it is",
       note: "Renowned for Ry Cooder's haunting slide guitar score and Robby Müller's stunning cinematography.",
-    }
+    },
     // {
     //   id: "my-next-pick",
     //   titleEn: "TBD",
