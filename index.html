@@ -216,9 +216,10 @@
   })();
 
   (function(){
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var host = document.getElementById("fireflies");
-    if (!host || reduce) return;
+    console.log('host', host);
+    if (!host) return;
     var COUNT = 18;
     for (var i = 0; i < COUNT; i++){
       var f = document.createElement("span");
