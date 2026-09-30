@@ -73,7 +73,7 @@ window.MOVIE_CLUB = {
       language: "English",
       basedOn: "The 2013 short film of the same name by Damien Chazelle",
       synopsis: "A promising young drummer enrolls at a cutthroat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential, pushing him to the brink of his physical and emotional sanity.",
-      date: "2026-09-30",
+      date: "2026-11-04",
       doors: "7:00 PM",
       start: "7:30 PM",
       location: "You know where it is",
